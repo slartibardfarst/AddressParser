@@ -1,0 +1,16 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "API for a service that parses address strings",
+  "main": "index.js",
+  "keywords": [
+    "swagger"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "swagger-tools": "0.8.*",
+    "addressit": "^1.3.0"
+  }
+}
