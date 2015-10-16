@@ -1,0 +1,129 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Address Parser",
+    "description": "API for a service that parses address strings",
+    "version": "1.0.0"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "paths": {
+    "/parse": {
+        "get": {
+        "summary": "",
+        "description": "Parse the address string into address components",
+        "x-swagger-router-controller": "Default",
+        "tags": [
+          "Default"
+        ],
+        "operationId": "parse",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "query string",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "client_id",
+            "in": "query",
+            "description": "identifier of caller",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "address response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ParseResult"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ParseResult": {
+      "type": "object",
+      "properties": {
+        "parseType": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "formattedFullAddress": {
+          "type": "string"
+        },
+        "formattedAddressLine": {
+          "type": "string"
+        },
+        "streetNumber": {
+          "type": "string"
+        },
+        "predirectional": {
+          "type": "string"
+        },
+        "streetName": {
+          "type": "string"
+        },
+        "streetSuffix": {
+          "type": "string"
+        },
+        "postdirectional": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "stateCode": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        },
+        "zipPlusFour": {
+          "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

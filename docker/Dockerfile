@@ -1,10 +1,10 @@
 from node:4.1.1
 
-RUN mkdir -p /usr/src
-WORKDIR /usr/src
+RUN mkdir -p /usr/local/app
+WORKDIR /usr/local/app
 
-COPY .. /usr/src/app
-RUN cd app; npm install
+COPY app /usr/local/app
+RUN npm install
 
 EXPOSE 3000
-CMD ["node", "app/index.js"]
+CMD ["node", "index.js"]
