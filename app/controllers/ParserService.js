@@ -4,11 +4,14 @@ var addressit = require('addressit');
 
 exports.parse = function (query, clientId) {
 
+  var start = new Date();
   var components = addressit(query);
+  var finish = new Date();
 
   var examples = {};
 
   examples['application/json'] = [{
+    "took" : (finish.getTime() - start.getTime()),
     "parseType": "street",
     "address": {
       formattedFullAddress: components.text,
